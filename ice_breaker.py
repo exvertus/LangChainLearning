@@ -1,12 +1,13 @@
 from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
+from typing import Tuple
 
 from third_parties.linkedin import scrape_linkedin_profile
 from agents.linkedin_lookup_agent import lookup as linkedin_lookup_agent
 from output_parsers import person_intel_parser, PersonIntel
 
-def ice_break(name: str) -> PersonIntel:
+def ice_break(name: str) -> Tuple[PersonIntel, str]:
     summary_template = """
         given the Linkedin information {information} about a person I want you to create
         1. a short summary of the person
@@ -41,7 +42,7 @@ def ice_break(name: str) -> PersonIntel:
 
     result = chain.run(information=linkedin_slimmed)
     print(result)
-    return person_intel_parser.parse(result)
+    return person_intel_parser.parse(result), linkedin_data.get("profile_pic_url")
 
 if __name__ == "__main__":
     result = ice_break(name="Eden Marco")
