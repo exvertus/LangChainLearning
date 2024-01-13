@@ -12,7 +12,7 @@ def scrape_linkedin_profile(linkedin_profile_url: str):
     Uses a file cache to avoid hitting the API too much"""
     pattern = r'\.linkedin\.com/in/[\w-]+'
     linkedin_profile_url = 'https://www' + re.search(pattern, linkedin_profile_url).group(0)
-    cache_data = pathlib.Path(os.path.dirname(__file__)) / 'linkedin.json'
+    cache_data = pathlib.Path(os.path.dirname(__file__)) / '.cache' /  'linkedin.json'
     if cache_data.exists():
         data = json.loads(cache_data.read_text())
         cached = data.get(linkedin_profile_url, None)
