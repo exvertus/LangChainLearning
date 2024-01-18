@@ -16,6 +16,9 @@ tiktoken = "^0.5.2"
 pypdf = "^3.17.4"
 faiss-cpu = "^1.7.4"
 beautifulsoup4 = "^4.12.2"
+streamlit = "^1.30.0"
+streamlit-chat = "^0.1.1"
+python-dotenv = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.12.1"
